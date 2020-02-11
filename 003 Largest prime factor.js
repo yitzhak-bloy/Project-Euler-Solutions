@@ -35,4 +35,4 @@ const largestPrimeFactor = (num) => {
   return Math.max(...allPrimeFactorsOfNum);
 }
 
-largestPrimeFactor(13195);
+largestPrimeFactor(600851475143);
