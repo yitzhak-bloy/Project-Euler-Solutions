@@ -1,43 +1,38 @@
+/*
+The prime factors of 13195 are 5, 7, 13 and 29.
+What is the largest prime factor of the number 600851475143 ?
+*/
+
 const largestPrimeFactor = (num) => {
-
-  // let number = num;
-
-  let allNumbersBelowNum = [2];
+  let allNumbersBelowNum = [];
   let allPrimeFactorsOfNum = [];
 
-  for (let i = 3; i < 10000; i++) {
+  // Pushing all numbers below 10000 (and not above so as not to cause the software to crash).
+  for (let i = 2; i < 10000; i++) {
     allNumbersBelowNum.push(i)
   }
 
+  // Filter allNumbersBelowNum to have only the Primes numbers.
   let allPrimesBelowNum = allNumbersBelowNum.filter((value) => {
 
-    for (let x = 2; x < value; x ++) {
-      if (value % x === 0) {
-      return false
+  // Checking for any number if it divides by another number that is not itself or one.
+    for (let i = 2; i < value; i++) {
+      if (value % i === 0) {
+        return false
       }
     }
     return true
   })
-  console.log('הראשונים כולם מתחת הנתון:::', allPrimesBelowNum)
 
-  // const did = (d) => {
-  //   // console.log(d, 'sdfcsedcs')
-  //   if (num % d === 0) {
-  //     console.log(d, 'דגכדגכדבגבךדגבחדךחבגמכהוחמגדןומדםקדמגןחבמדגםבצסצםןדלצשזםלסןקצגלבחמקדלןחבגמםדחבמםחבםחדמגםחגבמ')
-  //     allPrimeFactorsOfNum.push(d)
-  //     // number = number/d;
-  //     // did(d)
-  //   }
-  //   // console.log(number, 'num')
+  // Find the Prime numbers to which the given number is divided, and put it in the array.
+  for (let x = 0; x < allPrimesBelowNum.length; x++) {
+    if (num % allPrimesBelowNum[x] === 0) {
+      allPrimeFactorsOfNum.push(allPrimesBelowNum[x])
+    }
+  }
 
-  // }
-
-  // for (let i = 0; i < allPrimesBelowNum.length; i++) {
-  //   did(allPrimesBelowNum[i])
-  // }
-
-  // console.log('המספרים הסופים:', allPrimeFactorsOfNum)
-  
+  // Find the largest number from the allPrimeFactorsOfNum array.
+  return Math.max(...allPrimeFactorsOfNum);
 }
 
-largestPrimeFactor(12);
+largestPrimeFactor(13195);
