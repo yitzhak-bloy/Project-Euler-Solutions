@@ -16,6 +16,7 @@ const multiplesOf3and5 = (num) => {
     }
   }
 
+  // Find the sum of all numbers found multiplied by 3 or 5
   const sumOfNumbers = numbersMultiplesOf3and5.reduce((sum, number) => sum + number);
 
   return sumOfNumbers
