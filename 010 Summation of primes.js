@@ -1,117 +1,32 @@
-const primeSummation = (n) => {
-  let numbers = [2];
+/*
+The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+Find the sum of all the primes below two million.
+*/
 
-  for (let i = 3; i < n; i++) {
+const primeSummation = (n) => {
+  let numbers = [];
+
+  // Puts all numbers up to 'n' to 'numbers'
+  for (let i = 0; i < n; i++) {
     numbers.push(i)
   }
+  numbers[1] = 0;
 
-  
-  console.log(numbers)
+  // Moves on all numbers to the root of the number n
   for (let x = 0; x < Math.sqrt(numbers.length); x++) {
-    // console.log('numbers[x]', numbers[x])
-    console.log(numbers[x])
-    numbers.forEach((value, key) => {
-    //  console.log(`value: ${value}, key: ${key},'numbers[x]', ${numbers[x]} `);
-      if (value % numbers[x] !== 0 || numbers[x] === value) {
-        // console.log('a','numbers[x]',numbers[x],'number', number, number % numbers[x] )
-      } else {
-        // console.log('b','numbers[x]',numbers[x],'number', number, number % numbers[x] )
-        numbers.splice(key, 1)
-      }
-    });
+    if (numbers[x] !== 0){
 
+      // Goes over all numbers multiplied by x and sets them equal to 0
+      for (let j = x*x; j < n; j += x) {
+          numbers[j] = 0;
+      }
+    }
   }
-  
+
+  // Returns the sum of all prime numbers
   return numbers.reduce((lastResult, currentValue) => {
     return lastResult + currentValue;
   })
-
 }
-  
+
 primeSummation(2000000);
-
-Math.sqrt(2000000);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const primeSummation = (n) => {
-  let number = Math.sqrt(n);
-  let num = [2];
-  let check = false;
-
-  for (let i = 2; i < number; i++) {
-    check = true
-
-    for (let x = 0; x < num.length; x++) {
-      // console.log('i', i, 'x', num[x])
-      if (i % num[x] === 0) {
-        check = false;
-      }
-    }
-
-    if (check) {
-      num.push(i)
-    }
-  }
-  
-  // console.log(num)
-  return num.reduce((lastResult, currentValue) => {
-    return lastResult + currentValue;
-  })
-}
-  
-primeSummation(140759);
