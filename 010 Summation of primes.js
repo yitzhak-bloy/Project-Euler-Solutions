@@ -1,15 +1,15 @@
 const primeSummation = (n) => {
-  let numbers = [];
+  let numbers = [2];
 
-  for (let i = 2; i < n; i++) {
+  for (let i = 3; i < n; i++) {
     numbers.push(i)
   }
 
-  // console.log(numbers)
-
-  for (let x = 0; x < numbers.length; x++) {
+  
+  console.log(numbers)
+  for (let x = 0; x < Math.sqrt(numbers.length); x++) {
     // console.log('numbers[x]', numbers[x])
-
+    console.log(numbers[x])
     numbers.forEach((value, key) => {
     //  console.log(`value: ${value}, key: ${key},'numbers[x]', ${numbers[x]} `);
       if (value % numbers[x] !== 0 || numbers[x] === value) {
@@ -20,32 +20,17 @@ const primeSummation = (n) => {
       }
     });
 
-
-    // c = numbers.filter((number) => {
-    //   if (number % numbers[x] !== 0 || numbers[x] === number) {
-    //     console.log('a','numbers[x]',numbers[x],'number', number, number % numbers[x] )
-    //     return true
-    //   } else {
-    //     console.log('b','numbers[x]',numbers[x],'number', number, number % numbers[x] )
-    //     return false
-    //   }
-    // })
-    
   }
   
   return numbers.reduce((lastResult, currentValue) => {
     return lastResult + currentValue;
   })
 
-  // console.log('c',numbers)
-  // return numbers
-
 }
   
 primeSummation(2000000);
 
-
-
+Math.sqrt(2000000);
 
 
 
@@ -104,10 +89,11 @@ primeSummation(2000000);
 
 
 const primeSummation = (n) => {
+  let number = Math.sqrt(n);
   let num = [2];
   let check = false;
 
-  for (let i = 2; i < n; i++) {
+  for (let i = 2; i < number; i++) {
     check = true
 
     for (let x = 0; x < num.length; x++) {
