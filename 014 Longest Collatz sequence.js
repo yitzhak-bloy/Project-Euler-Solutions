@@ -1,41 +1,47 @@
-function longestCollatzSequence(limit) {
-  let array = [];
-  let object = {};
+/*
+The following iterative sequence is defined for the set of positive integers:
 
-  for (let i = limit; i > 0; i--) {
-    array.push(i)
-  }
+n → n/2 (n is even)
+n → 3n + 1 (n is odd)
+
+Using the rule above and starting with 13, we generate the following sequence:
+
+13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
+It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.
+
+Which starting number, under one million, produces the longest chain?
+
+NOTE: Once the chain starts the terms are allowed to go above one million.
+*/
+
+const longestCollatzSequence = (limit) => {
+  let solution = [0, 3];
 
   const check = (num) => {
-    let arr = []
-    let z = num;
+    let numOfchain = 0;
+    let numInSequence = num;
 
-    while (z > 1) {
-      if (z % 2 === 0) {
-        arr.push(z)
-        if (array.indexOf(z) > -1) {
-          delete array[array.indexOf(z)];
-        }
-        z = z/2
-      } else {
-          if (array.indexOf(z) > -1) {
-            delete array[array.indexOf(z)];
-          }
-          arr.push(z)
-          z = z*3+1
-        }
+    while (numInSequence > 1) {
+      if (numInSequence % 2 === 0) {
+        numOfchain++
+        numInSequence = numInSequence/2
+      } 
+      else {
+        numOfchain++
+        numInSequence = numInSequence*3+1
+      }
     }
-    arr.push(1)
-    object[num] = arr.length
+
+    if (numOfchain > solution[0]) {
+      solution[0] = numOfchain
+      solution[1] = num
+    }
   }
 
-  array.map((num) => {
-    if (num) {
-      check(num)
-    }
-  });
-
-  return Number(Object.keys(object).reduce((a, b) => object[a] > object[b] ? a : b));
+  for (let i = limit; i > 0; i--) {
+    check(i)
+  }
+  return solution[1]
 } 
 
-longestCollatzSequence(5847);
+longestCollatzSequence(1000000);
