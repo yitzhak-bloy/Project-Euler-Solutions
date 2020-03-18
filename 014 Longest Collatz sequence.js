@@ -15,12 +15,14 @@ NOTE: Once the chain starts the terms are allowed to go above one million.
 */
 
 const longestCollatzSequence = (limit) => {
-  let solution = [0, 3];
+  let solution = [0, 0];
 
+  // Gets the number entered into the function and checks the length of the chain of the sequence starting from it
   const check = (num) => {
     let numOfchain = 0;
     let numInSequence = num;
 
+    // Increases numOfchain by the amount of digits in the sequence
     while (numInSequence > 1) {
       if (numInSequence % 2 === 0) {
         numOfchain++
@@ -32,15 +34,18 @@ const longestCollatzSequence = (limit) => {
       }
     }
 
+    // Insert the number from which the longest chain has into the solution variable
     if (numOfchain > solution[0]) {
       solution[0] = numOfchain
       solution[1] = num
     }
   }
 
+  // Passes all digits below the limit number, and puts them into a check function
   for (let i = limit; i > 0; i--) {
     check(i)
   }
+  
   return solution[1]
 } 
 
