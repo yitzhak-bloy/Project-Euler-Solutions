@@ -29,21 +29,26 @@ Find the maximum total from top to bottom of the triangle below:
 NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
 */
 
+// This solution is essentially based on this answer https://stackoverflow.com/a/8002423/11398871
 const maximumPathSumI = (triangle) => {
 
-  const chack = (down, up, i) => {
+  // A computer from the bottom up, and the higher array gets the higher result
+  const calculate = (down, up, i) => {
     for (let x = 0; x < up.length; x++) {
       if (up[x] + down[x] > up[x] + down[x+1]) {
-        triangle[i-2][x] = up[x] + down[x];
+        triangle[i-1][x] = up[x] + down[x];
       } else {
-        triangle[i-2][x] = up[x] + down[x+1];
+        triangle[i-1][x] = up[x] + down[x+1];
       }
     }
   }
 
-  for (let i = triangle.length; i > 0; i--) {
-    if (triangle[i-2]) {
-      chack(triangle[i-1], triangle[i-2], i)    
+  // Passes the array, and puts into the calculate function the last two arrays in order.
+  for (let i = triangle.length-1; i > 0; i--) {
+
+    // Does not insert the arrays when the top array does not exist
+    if (triangle[i-1]) {
+      calculate(triangle[i], triangle[i-1], i)    
     }
   }
   return triangle[0][0]
