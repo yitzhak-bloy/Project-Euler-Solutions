@@ -36,4 +36,3 @@ const sumAmicableNum = (n) => {
 }
   
 sumAmicableNum(10000);
-  
