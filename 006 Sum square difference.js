@@ -7,7 +7,7 @@ Hence the difference between the sum of the squares of the first ten natural num
 Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
 */
 
-function sumSquareDifference(n) {
+const sumSquareDifference = (n) => {
   let allNumbers = [];
 
   // The insertion of all numbers up to n into one array
